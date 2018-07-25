@@ -1,0 +1,264 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>login page</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body style="background-color:#AA1923"">
+
+	<div id="main.wrapper">
+	
+	</div>
+<table width="500" border="2" align="center" cellpadding="0" cellspacing="1" 
+<tr>
+  <h1><center>Employee Management</center></h1>
+<form name="form1" method="post" action="main_login.php">
+  <td>
+  <table width="100%" >
+  <tr>
+  <td ><strong> Login</strong></td>
+  </tr>
+  <tr>
+  <td width="78">Username</td>
+  <td width="6">:</td>
+  <td width="294"><input name="username" type="text" id="username"></td>
+  </tr>
+  <tr>
+  <td>Password</td>
+  <td>:</td>
+  <td><input name="password" type="password" id="password"></td>
+  </tr>
+  <tr>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td><input type="submit" name="Submit" value="Login"></td>
+  </tr>
+  </table>
+  </td>
+</form>
+</tr>
+</table>                        
+         <div align="center">
+			 <a href="forgot_pass.php">Forgot Password</a> 
+		</div> 
+		<div align="center">
+			 <a href="reset.php">Reset Password</a> 
+		</div>
+		<div align="center">
+			 <a href="sign.php">sign up</a> 
+		</div>
+
+</body>
+</html>
+                                    success.php
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<body >
+	<table width="100%" height="100%" >
+	  <tr width="200" height="100" >
+	     <td><?php include 'header.php'; ?> </td>
+	    	  </tr>
+	  <tr height="300">
+	     <td width = "220" valign="top">
+	     <?php include 'nav.php'; ?>
+	     </td>
+	     <td width="100%" height="100%"  align="left" valign="top">
+	     <font size ="5"><?php echo "welcome ";?></font><br>
+	     
+	     </td>    
+	   </tr> 
+    </table>		    
+	</body>
+</html>
+
+
+                                            nav.php
+											
+<table width="175"  cellpadding="0" cellspacing="0"  height="100%">
+	<tr>
+		<td  valign="top">
+	<ul><li><a href="add.php"> <font size ="4">Add Employee</font></a> </li>
+	    <li><a href="details.php"><font size ="4">Employee Details</font></a></li>
+	    <li><a href="delete.php"><font size ="4">Delete Employee details</font></a></li>
+<li><a href="update.php"><font size ="4">Update Employee details</font></a></li>
+<li><a href="search.php"><font size ="4">Search Employee details</font></a></li>
+
+	<li><a href="logout.php"><font size ="4">Logout</font></a></li></ul>	 
+		</td>
+            </tr>
+</table>
+
+
+                                           header.php
+										   
+	<div style = "height:40px ;line-height:100px;font-size:10px;font-weight:bold;font-BrushScript M T:Georgia;padding-left:250px;" align="left">
+	<div class="body"><font size="6" >EmployeeManagement </font></div>
+	    </div>
+
+		
+		
+		                                        sign.php
+												
+												
+												{
+				//echo '<script type="text/javascript"> alert("signup button clicked") </script>';
+				
+				$username = $_post['username'];
+				$password = $_post['password'];
+				$cpassword = $_post['cpassword'];
+				
+				if($password==$cpassword)
+				{
+					$query= "select * from signup WHERE username='$username'";
+					$query_run = mysqli_query($con,$query);
+					
+					if(mysqli_num_rows($query_run)>0)
+					{
+						echo '<script type="text/javascript"> alert (user already exists ....try another username) </script>';
+					}
+					else
+					{
+						$query= "insert into signup values('$username','$password')";
+						$query_run = mysqli_query($con,$query);
+						
+						if($query_run)
+						{
+							echo '<script type="text/javascript"> alert (user registered...go to login page to login) </script>';
+						}
+						else
+						{
+							echo '<script type="text/javascript"> alert (error) </script>';
+						}
+					}
+				}
+				else
+				{
+					echo '<script type="text/javascript"> alert (password does not match) </script>';
+				}
+			}
+			
+ 
+ 
+ 
+ 
+                                                   nav ................
+												   
+												   <div class="container">
+<nav>
+<ul>
+<li><a href="add.php">Add Employee</a></li>
+	    <li><a href="details.php">Employee Details</a></li>
+	    <li><a href="delete.php">Delete Employee details</a></li>
+        <li><a href="update.php">Update Employee details</a></li>
+		<li><a href="search.php">Search Employee details</a></li>
+		<li><a href="logout.php"><font size ="4">Logout</font></a></li> 
+</ul>
+</nav>
+</div>
+
+
+
+
+
+
+
+
+
+
+<style>
+body{
+margin: 0;
+font-family: "sans-serif";
+font-weight: 400;
+}
+
+.container{
+width: 80px;
+margin: 0 auto;
+}
+
+nav{
+float: right;
+}
+
+nav ul{
+margin: 0;
+padding: 0;
+life-style: none;
+}
+
+nav li{
+display: inline-block;
+margin-left: 70px;
+padding-top: 25px;
+position: relative;
+}
+
+nav a{
+color: #444;
+text-decoration: none;
+text-transformation: uppercase;
+font-size: 14px;
+}
+
+nav a hover{
+color: #000;
+}
+
+nav a::before{
+content: '';
+display: block;
+height: 5px;
+width: 0%;
+background-color: #444;
+position: absolute;
+top: 0;
+}
+
+nav a hover::before{
+width: 100%;
+}
+</style>
+
+
+
+
+                                                          success.php
+														  
+														  
+														  
+														
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<body style="background-color:#e67e22"> 
+	<table width="100%" height="100%" >
+	  <tr width="200" height="100" >
+	     <td><?php include 'header.php'; ?> </td>
+	    	  </tr>
+	  <tr height="300">
+	     <td width = "220" valign="top">
+	     <?php include 'nav.php'; ?>
+	     </td>
+	     <td width="100%" height="100%"  align="left" valign="top">
+	     <font size ="5"><?php echo "welcome ";?></font><br>
+	     
+	     </td>    
+	   </tr> 
+    </table>		    
+	</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                                        
